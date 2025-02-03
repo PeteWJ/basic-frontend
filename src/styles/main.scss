@@ -1,5 +1,237 @@
-body {
-  background-color: #f4f4f4;
-  font-family: Arial, sans-serif;
+@use './normalize.scss';
+
+:root {
+	--font-family: Arial;
 }
 
+body {
+	font-family: var(--font-family);
+	min-height: 100%;
+	line-height: 1.5;
+	margin: 0;
+	padding: 0;
+	color: #111;
+	background-color: #ccc;
+}
+
+main,
+footer {
+	padding: 1rem;
+}
+
+header {
+	background-color: #fff;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+	padding: 1em;
+}
+
+nav a,
+nav li > span {
+	color: inherit;
+	display: block;
+	padding: 0.75rem 1.5rem;
+}
+
+nav a {
+	text-decoration: none;
+}
+
+header a:hover {
+	background-color: #ccc;
+	color: inherit;
+}
+
+a[aria-current="page"] {
+	font-weight: bold;
+	color: maroon;
+}
+a[aria-current="page"]:hover {
+	color: maroon;
+}
+
+nav {
+	justify-self: flex-end;
+}
+
+nav ul {
+	list-style: none;
+	display: flex;
+	padding: 0;
+}
+
+nav.enhanced ul {
+	margin: 0;
+	background: #fff;
+	min-width: max-content;
+	color: #111;
+}
+
+header nav ul > li[data-has-children] {
+	position: relative;
+}
+
+li[data-has-children] .wrapper {
+	display: flex;
+}
+
+li[data-has-children] .wrapper a {
+	padding-right: 0.5em;
+}
+
+li[data-has-children] .wrapper button {
+	padding-inline: 0.65em;
+}
+
+nav.enhanced .nav-content > ul > li > ul  {
+	position: absolute;
+	top: 110%;
+	left: 0;
+	box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.1);
+}
+
+
+nav li > ul {
+	flex-direction: column;
+}
+
+li > ul li {
+	display: block;
+	margin: 0;
+}
+
+nav button {
+	font: inherit;
+	border: none;
+	background: none;
+	display: flex;
+	gap: 0.5em;
+	align-items: center;
+	cursor: pointer;
+	padding: 0.75rem 1.5rem;
+	color: inherit;
+	font-weight: bold;
+}
+
+nav button:hover {
+	background-color: #eee;
+}
+
+nav button[aria-expanded="true"] {
+	background-color: #eee;
+}
+
+nav button svg {
+	color: inherit;
+	transition: transform 0.1s linear;
+}
+
+nav li button[aria-expanded="true"] svg {
+	transform: rotate(180deg);
+}
+
+button:focus-visible,
+a:focus-visible {
+	outline: 2px solid;
+	outline-offset: 2px;
+}
+
+@media all and (max-width: 52em) {
+	.nav-content {
+		transition: transform 0.6s ease-out, box-shadow .6s ease-out;
+	}
+
+	.enhanced .nav-content {
+		position: fixed !important; /* needed to override the position set in the inert polyfill */
+		z-index: 10;
+		width: 75vw;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		overflow-y: auto;
+		background: #fff;
+		padding: 1rem 1.5rem;
+		display: flex;
+		flex-direction: column;
+		box-shadow: 0 0 0 150vmax rgba(0, 0, 0, 0);
+		transform: translateX(-100vw);
+	}
+
+	.nav-toggle[aria-expanded="true"] + .nav-content {
+		transform: translateX(0vw);
+		box-shadow: 0 0 0 150vmax rgba(0, 0, 0, 0.75);
+	}
+	
+	.nav-closeBtn {
+		width: max-content;
+		align-self: flex-end;
+	}
+
+	nav ul[role="list"] {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: block;
+
+		&[hidden] {
+			display: none;
+		}
+	}
+
+
+	nav {
+		display: flex;
+		width: 100%;
+		flex-direction: column;
+		grid-column: 2;
+		z-index: 10;
+	}
+
+	nav li,
+	nav button {
+		position: static;
+		display: block;
+		width: 100%;
+	}
+
+	.nav-toggle {
+		width: max-content;
+		border: none;
+		padding: 0.5em 0.25em;
+
+		&[aria-expanded="true"] {
+			border: none;
+			margin-bottom: 0.5em;
+		}
+
+		&[aria-expanded="true"] svg {
+			transform: none;
+		}
+	}
+
+	nav button,
+	nav a {
+		padding: 0.75rem 0;
+		text-align: left;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	nav.enhanced .nav-content > ul > li > ul {
+		position: static;
+		box-shadow: none;
+		padding-left: 1rem;
+	}
+
+	nav ul {
+		display: block;
+	}
+
+	nav li,
+	button[aria-expanded="true"] {
+		border-bottom: 1px solid #ccc;
+	}
+
+	nav li:last-of-type {
+		border-bottom: none;
+	}
+}
