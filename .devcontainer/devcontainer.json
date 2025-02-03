@@ -1,10 +1,25 @@
 {
-  "name": "Webpack Codespace",
-  "dockerFile": "Dockerfile",
-  "customizations": {
-    "vscode": {
-      "extensions": ["dbaeumer.vscode-eslint"]
-    }
-  },
-  "forwardPorts": [8080]
+ "image": "mcr.microsoft.com/devcontainers/universal:2",
+ "waitFor": "onCreateCommand",
+ "updateContentCommand": "npm install",
+ "postCreateCommand":"  ",
+ "postAttachCommand": {
+   "server": "npm start"
+ },
+ "customizations": {
+   "codespaces": {
+     "openFiles": [
+       "README.md",
+       "index.js"
+     ]
+   }
+ },
+ "portsAttributes": {
+   "3000": {
+     "label": "Application",
+     "onAutoForward": "openPreview"
+   }
+ },
+ "forwardPorts": [3000]
 }
+
