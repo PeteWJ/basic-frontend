@@ -1,0 +1,21 @@
+{
+  "name": "webpack-codespaces",
+  "version": "1.0.0",
+  "description": "A Webpack setup for Codespaces",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack serve --open --mode development",
+    "build": "webpack --mode production"
+  },
+  "devDependencies": {
+    "webpack": "^5.0.0",
+    "webpack-cli": "^5.0.0",
+    "webpack-dev-server": "^4.0.0",
+    "html-webpack-plugin": "^5.5.0",
+    "sass": "^1.64.0",
+    "sass-loader": "^13.3.2",
+    "css-loader": "^6.8.1",
+    "style-loader": "^3.3.3"
+  }
+}
+

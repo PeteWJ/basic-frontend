@@ -1,0 +1,10 @@
+{
+  "name": "Webpack Codespace",
+  "dockerFile": "Dockerfile",
+  "customizations": {
+    "vscode": {
+      "extensions": ["dbaeumer.vscode-eslint"]
+    }
+  },
+  "forwardPorts": [8080]
+}
